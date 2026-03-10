@@ -15,7 +15,7 @@ fun main() {
             estudiantesRedes++
         }
         contador++
-    }// fin de while
-    println("$estudiantesRedes eligieron redes")
+    }
 
+    println("$estudiantesRedes eligieron redes")
 }

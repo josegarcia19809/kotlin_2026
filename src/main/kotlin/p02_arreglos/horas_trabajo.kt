@@ -1,4 +1,4 @@
-package org.example.p01_fundamentos
+package org.example.p02_arreglos
 
 import java.text.DecimalFormat
 

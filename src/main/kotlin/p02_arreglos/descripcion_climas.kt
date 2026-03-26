@@ -13,7 +13,7 @@ fun main() {
     for (clima in climas) {
         print("$clima \t")
     }
-    
+
     println()
     println("Total de descripciones: ${climas.size}")
 }

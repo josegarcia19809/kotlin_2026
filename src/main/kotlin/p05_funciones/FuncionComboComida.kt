@@ -9,7 +9,7 @@ fun main() {
         print("Dame el precio base del combo: ")
         val precio = readln().toDouble()
 
-        menu()
+        menuCombo()
         val tamanio = readln().toInt()
 
         calcularPrecioCombo(precio, tamanio)
@@ -44,7 +44,7 @@ fun calcularPrecioCombo(precioBase: Double, tamanoCombo: Int) {
     println("El precio final del combo es $precioFinal")
 }
 
-fun menu() {
+fun menuCombo() {
     println("Tamaños de combos")
     println("1. 🍔Combo pequeño → ➕ +20 pesos")
     println("2. 🍔Combo mediano → ➕ +40 pesos")

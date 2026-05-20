@@ -1,8 +1,20 @@
-121|Familiar|700.0|si
-121|Familiar|700.0|si
-122|Individual|800.0|si
-121|Familiar|700.0|si
-121|Familiar|700.0|si
-122|Individual|800.0|si
-123|f|12.0|si
-120|h|87.0|no
+101|Individual|1000.0|si
+102|Doble|1500.0|si
+103|Suite|2500.0|no
+104|Familiar|2200.0|si
+105|Individual|1100.0|si
+106|Doble|1600.0|no
+107|Suite Junior|2800.0|si
+108|Familiar|2300.0|si
+109|Individual|1200.0|no
+110|Doble|1700.0|si
+111|Suite|3000.0|si
+112|Familiar|2400.0|no
+113|Individual|1050.0|si
+114|Doble|1550.0|si
+115|Suite Junior|2900.0|no
+116|Familiar|2600.0|si
+117|Individual|1150.0|si
+118|Doble|1800.0|no
+119|Suite|3200.0|si
+120|Familiar|2700.0|si

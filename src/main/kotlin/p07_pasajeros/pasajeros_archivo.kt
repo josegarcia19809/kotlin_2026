@@ -20,23 +20,23 @@ val nombreArchivoPasajero = "pasajeros3.txt"
 
 fun main() {
 
-    crearArchivoSiNoExiste()
-    recuperarDeArchivo()
-    mostrarDatos()
+    crearArchivoSiNoExistePasajero()
+    recuperarDeArchivoPasajero()
+    mostrarDatosPasajeros()
 
     var opcion: Int
 
     do {
-        menu()
+        menuPasajero()
         opcion = readln().toInt()
 
         when (opcion) {
             1 -> {
-                pedirDatos()
-                escribirEnArchivo()
+                pedirDatosPasajero()
+                escribirEnArchivoPasajero()
             }
 
-            2 -> mostrarDatos()
+            2 -> mostrarDatosPasajeros()
 
             3 -> println("Saliendo...")
 
@@ -46,7 +46,7 @@ fun main() {
     } while (opcion != 3)
 }
 
-fun menu() {
+fun menuPasajero() {
     println()
     println("-------------------------------------------------------------------")
     println("SISTEMA DE PASAJEROS")
@@ -56,7 +56,7 @@ fun menu() {
     print("Elige: ")
 }
 
-fun pedirDatos() {
+fun pedirDatosPasajero() {
 
     println("--------------NUEVO PASAJERO----------------")
     println("Escribe los datos del pasajero")
@@ -76,10 +76,10 @@ fun pedirDatos() {
     print("Dame precio del pasaje: ")
     val pasajex = readln().toDouble()
 
-    insertar(clavex, nombrex, origenx, destinox, pasajex)
+    insertarPasajero(clavex, nombrex, origenx, destinox, pasajex)
 }
 
-fun insertar(
+fun insertarPasajero(
     clavex: Int,
     nombrex: String,
     origenx: String,
@@ -98,7 +98,7 @@ fun insertar(
     pasajeros.add(nuevo)
 }
 
-fun mostrarDatos() {
+fun mostrarDatosPasajeros() {
 
     if (pasajeros.isEmpty()) {
         println("No hay pasajeros registrados")
@@ -131,9 +131,9 @@ fun mostrarDatos() {
     }
 }
 
-fun crearArchivoSiNoExiste() {
+fun crearArchivoSiNoExistePasajero() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajero)
 
     if (!archivo.exists()) {
         archivo.createNewFile()
@@ -143,9 +143,9 @@ fun crearArchivoSiNoExiste() {
     }
 }
 
-fun escribirEnArchivo() {
+fun escribirEnArchivoPasajero() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajero)
 
     archivo.printWriter().use { salida ->
 
@@ -158,9 +158,9 @@ fun escribirEnArchivo() {
     }
 }
 
-fun recuperarDeArchivo() {
+fun recuperarDeArchivoPasajero() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajero)
 
     if (!archivo.exists()) {
         println("No se pudo abrir el archivo")
@@ -177,7 +177,7 @@ fun recuperarDeArchivo() {
             val destinox = campos[3]
             val pasajex = campos[4].toDouble()
 
-            insertarPasajero2(clavex, nombrex, origenx, destinox, pasajex)
+            insertarPasajero(clavex, nombrex, origenx, destinox, pasajex)
         }
     }
 }

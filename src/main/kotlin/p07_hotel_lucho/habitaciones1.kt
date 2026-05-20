@@ -9,20 +9,21 @@ data class Habitacion(
     var disponible: String
 )
 
-var habitacion1 = Habitacion(0, "", 0.0, "")
-val nombreArchivo = "habitaciones.txt"
+val habitaciones = mutableListOf<Habitacion>()
+val nombreArchivoHabitacion = "habitaciones.txt"
 
-fun insertar(
+fun insertarHabitacion(
     numerox: Int, tipox: String,
     precioNochex: Double, disponiblex: String
 ) {
-    habitacion1.numero = numerox
-    habitacion1.tipo = tipox
-    habitacion1.precioNoche = precioNochex
-    habitacion1.disponible = disponiblex
+    val nuevaHabitacion = Habitacion(
+        numerox, tipox, precioNochex,
+        disponiblex
+    )
+    habitaciones.add(nuevaHabitacion)
 }
 
-fun pedirDatos() {
+fun pedirDatosHabitacion() {
     println("Dame los datos de la habitación")
 
     print("Dame el número: ")
@@ -37,28 +38,122 @@ fun pedirDatos() {
     print("Dime si está disponible (si/no): ")
     val disponiblex = readln()
 
-    insertar(numerox, tipox, precioNochex, disponiblex)
+    insertarHabitacion(numerox, tipox, precioNochex, disponiblex)
 }
 
-fun mostrarDatosHabitacion() {
+fun mostrarDatosHabitacion(indice: Int) {
     println("Datos de la habitación")
-    println("Número: ${habitacion1.numero}")
-    println("Tipo: ${habitacion1.tipo}")
-    println("Precio por noche: ${habitacion1.precioNoche}")
-    println("Disponible?: ${habitacion1.disponible}")
+    println("Número: ${habitaciones[indice].numero}")
+    println("Tipo: ${habitaciones[indice].tipo}")
+    println("Precio por noche: ${habitaciones[indice].precioNoche}")
+    println("Disponible?: ${habitaciones[indice].disponible}")
+}
+
+fun mostrarDatosTodasHabitaciones() {
+    println("Datos de las habitaciones")
+    if (habitaciones.isEmpty()) {
+        println("No hay habitaciones registradas")
+        return
+    }
+
+    println()
+
+    println(
+        "%-8s %-25s %-10s %-12s".format(
+            "NUMERO",
+            "TIPO",
+            "PRECIO",
+            "DISPONIBLE"
+        )
+    )
+    for (habitacion in habitaciones) {
+        println(
+            "%-8d %-25s %-10.2f %-12s".format(
+                habitacion.numero,
+                habitacion.tipo,
+                habitacion.precioNoche,
+                habitacion.disponible
+            )
+        )
+    }
 }
 
 fun escribirEnArchivoHabitacion() {
-    val archivo = File(nombreArchivo)
-    val texto = "${habitacion1.numero}|${habitacion1.tipo}|" +
-            "${habitacion1.precioNoche}|${habitacion1.disponible}"
-    archivo.writeText(texto)
-    println("El archivo $nombreArchivo se ha escrito correctamente")
+    val archivo = File(nombreArchivoHabitacion)
+    archivo.writeText("") // limpia el archivo antes de escribir
+    for (habitacion1 in habitaciones) {
+        val texto = "${habitacion1.numero}|${habitacion1.tipo}|" +
+                "${habitacion1.precioNoche}|${habitacion1.disponible}\n"
+        archivo.appendText(texto)
+    }
+    println("El archivo $nombreArchivoHabitacion se ha escrito correctamente")
+}
+
+fun recuperarDeArchivoHabitacion() {
+    val archivo = File(nombreArchivoHabitacion)
+
+    val lineas = archivo.readLines()
+
+    for (linea in lineas) {
+        val campos = linea.split("|")
+
+        val numerox = campos[0].toInt()
+        val tipox = campos[1]
+        val preciox = campos[2].toDouble()
+        val disponiblex = campos[3]
+
+        insertarHabitacion(
+            numerox, tipox,
+            preciox, disponiblex
+        )
+    }
+}
+
+fun crearArchivoHabitacionSiNoExiste() {
+
+    val archivo = File(nombreArchivoHabitacion)
+
+    if (!archivo.exists()) {
+        archivo.createNewFile()
+        println("Archivo creado")
+    } else {
+        println("El archivo ya existe")
+    }
+}
+
+fun menuHabitaciones() {
+    println()
+    println("-------------------------------------------------------------------")
+    println("SISTEMA DE HABITACIONES")
+    println("1.- ALTA DE HABITACIONES")
+    println("2.- REPORTE GENERAL")
+    println("3.- SALIR")
+    print("Elige: ")
 }
 
 fun main() {
-    pedirDatos()
-    println("-".repeat(100))
-    mostrarDatosHabitacion()
-    escribirEnArchivoHabitacion()
+    crearArchivoHabitacionSiNoExiste()
+    recuperarDeArchivoHabitacion()
+    mostrarDatosTodasHabitaciones()
+
+    var opcion: Int
+
+    do {
+        menuHabitaciones()
+        opcion = readln().toInt()
+
+        when (opcion) {
+            1 -> {
+                pedirDatosHabitacion()
+                escribirEnArchivoHabitacion()
+            }
+
+            2 -> mostrarDatosTodasHabitaciones()
+
+            3 -> println("Saliendo...")
+
+            else -> println("Opción no válida")
+        }
+
+    } while (opcion != 3)
 }

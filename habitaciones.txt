@@ -1,1 +1,8 @@
-101|Individual|850.0|si
+121|Familiar|700.0|si
+121|Familiar|700.0|si
+122|Individual|800.0|si
+121|Familiar|700.0|si
+121|Familiar|700.0|si
+122|Individual|800.0|si
+123|f|12.0|si
+120|h|87.0|no

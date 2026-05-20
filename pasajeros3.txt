@@ -21,3 +21,4 @@
 61|Andrea Jimenez|Puebla|Acapulco|470.0
 64|Ivan Ortega|Mazatlan|Guadalajara|530.0
 100|Alfredo Molina|Toluca|Mazatlan|2000.0
+101|Mari<a del Barrio|Paris|Tepito|2000.0

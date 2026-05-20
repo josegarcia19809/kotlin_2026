@@ -7,7 +7,7 @@ package org.example.p06_archivos
 
 import java.io.File
 
-data class Pasajero(
+data class PasajeroPrueba(
     var clave: Int,
     var nombre: String,
     var origen: String,
@@ -15,8 +15,8 @@ data class Pasajero(
     var pasaje: Double
 )
 
-val pasajeros = mutableListOf<Pasajero>()
-val nombreArchivo = "pasajeros3.txt"
+val pasajerosPrueba = mutableListOf<PasajeroPrueba>()
+val nombreArchivoPasajerosPrueba = "pasajeros3.txt"
 
 fun main() {
 
@@ -87,7 +87,7 @@ fun insertarPasajero(
     pasajex: Double
 ) {
 
-    val nuevo = Pasajero(
+    val nuevo = PasajeroPrueba(
         clavex,
         nombrex,
         origenx,
@@ -95,12 +95,12 @@ fun insertarPasajero(
         pasajex
     )
 
-    pasajeros.add(nuevo)
+    pasajerosPrueba.add(nuevo)
 }
 
 fun mostrarDatosPasajero() {
 
-    if (pasajeros.isEmpty()) {
+    if (pasajerosPrueba.isEmpty()) {
         println("No hay pasajeros registrados")
         return
     }
@@ -117,7 +117,7 @@ fun mostrarDatosPasajero() {
         )
     )
 
-    for (pasajero in pasajeros) {
+    for (pasajero in pasajerosPrueba) {
 
         println(
             "%-8d %-25s %-25s %-25s %-10.2f".format(
@@ -133,7 +133,7 @@ fun mostrarDatosPasajero() {
 
 fun crearArchivoPasajeroSiNoExiste() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajerosPrueba)
 
     if (!archivo.exists()) {
         archivo.createNewFile()
@@ -145,11 +145,11 @@ fun crearArchivoPasajeroSiNoExiste() {
 
 fun escribirEnArchivoPasajero() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajerosPrueba)
 
     archivo.printWriter().use { salida ->
 
-        for (pasajero in pasajeros) {
+        for (pasajero in pasajerosPrueba) {
 
             salida.println(
                 "${pasajero.clave}|${pasajero.nombre}|${pasajero.origen}|${pasajero.destino}|${pasajero.pasaje}"
@@ -160,7 +160,7 @@ fun escribirEnArchivoPasajero() {
 
 fun recuperarDeArchivoPasajero() {
 
-    val archivo = File(nombreArchivo)
+    val archivo = File(nombreArchivoPasajerosPrueba)
 
     archivo.forEachLine { linea ->
 

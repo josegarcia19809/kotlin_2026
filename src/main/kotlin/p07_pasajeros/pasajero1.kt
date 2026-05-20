@@ -1,6 +1,6 @@
 package org.example.p07_pasajeros
 
-data class Pasajero(
+data class Pasajero1(
     var clave: Int,
     var nombre: String,
     var origen: String,
@@ -8,14 +8,14 @@ data class Pasajero(
     var pasaje: Double
 )
 
-var p1 = Pasajero(0, "", "", "", 0.0)
+var p1 = Pasajero1(0, "", "", "", 0.0)
 
 fun main() {
-    pedirDatos()
-    mostrarDatosPasajero()
+    pedirDatosPasajero1()
+    mostrarDatosPasajero1()
 }
 
-fun pedirDatos() {
+fun pedirDatosPasajero1() {
     println("Escribe los datos del pasajero")
 
     print("Dame la clave: ")
@@ -33,10 +33,10 @@ fun pedirDatos() {
     print("Dame precio del pasaje: ")
     val pasajex = readln().toDouble()
 
-    insertar(clavex, nombrex, origenx, destinox, pasajex)
+    insertarPasajero1(clavex, nombrex, origenx, destinox, pasajex)
 }
 
-fun insertar(
+fun insertarPasajero1(
     clavex: Int,
     nombrex: String,
     origenx: String,
@@ -50,7 +50,7 @@ fun insertar(
     p1.pasaje = pasajex
 }
 
-fun mostrarDatosPasajero() {
+fun mostrarDatosPasajero1() {
     println("..................................")
     println("Datos del pasajero:")
     println("Clave: ${p1.clave}")

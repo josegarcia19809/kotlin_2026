@@ -10,26 +10,50 @@ data class ServicioHotel(
 )
 
 val servicio = ServicioHotel("", 0.0, "", "")
+val servicios = mutableListOf<ServicioHotel>()
 val nombreArchivoServicio = "servicios.txt"
 
-fun insertarServicio(
-    nombrex: String,
-    costox: Double,
-    disponiblex: String,
-    horariox: String
-) {
-    servicio.nombreServicio = nombrex
-    servicio.costo = costox
-    servicio.disponible = disponiblex
-    servicio.horario = horariox
+fun insertarServicio(nombrex: String, costox: Double, disponiblex: String, horariox: String) {
+    val nuevoServicio = ServicioHotel(nombrex, costox, disponiblex, horariox)
+    servicios.add(nuevoServicio)
 }
 
-fun mostrarDatosServicio() {
+fun mostrarDatosServicio(indice: Int) {
     println("Datos del servicio 💶")
-    println("Nombre del servicio: ${servicio.nombreServicio}")
-    println("Costo: ${servicio.costo}")
-    println("¿Está disponible? ${servicio.disponible}")
-    println("Horario: ${servicio.horario}")
+    println("Nombre del servicio: ${servicios[indice].nombreServicio}")
+    println("Costo: ${servicios[indice].costo}")
+    println("¿Está disponible? ${servicios[indice].disponible}")
+    println("Horario: ${servicios[indice].horario}")
+}
+
+fun mostrarTodosLosServicios() {
+    println("Lista de servicios 💶")
+
+    if (servicios.isEmpty()) {
+        println("No hay servicios registrados")
+        return
+    }
+
+    println()
+    println(
+        "%-25s %-12s %-15s %-20s".format(
+            "SERVICIO",
+            "COSTO",
+            "DISPONIBLE",
+            "HORARIO"
+        )
+    )
+
+    for (servicio in servicios) {
+        println(
+            "%-25s %-12.2f %-15s %-20s".format(
+                servicio.nombreServicio,
+                servicio.costo,
+                servicio.disponible,
+                servicio.horario
+            )
+        )
+    }
 }
 
 fun pedirDatosServicio() {
@@ -50,19 +74,183 @@ fun pedirDatosServicio() {
     insertarServicio(nombrex, costox, disponiblex, horariox)
 }
 
+fun crearArchivoServicioSiNoExiste() {
+
+    val archivo = File(nombreArchivoServicio)
+    if (!archivo.exists()) {
+        archivo.createNewFile()
+        println("Archivo creado")
+    } else {
+        println("El archivo ya existe")
+    }
+}
+
+fun menuServicios() {
+
+    println()
+    println("🏨---------------------------------------------🏨")
+    println("          SISTEMA DE SERVICIOS")
+    println("1.- ➕ ALTA DE SERVICIO")
+    println("2.- 📋 REPORTE GENERAL")
+    println("3.- 🔍 BUSCAR SERVICIO")
+    println("4.- ✅ FILTRAR DISPONIBLES")
+    println("5.- 💰 ORDENAR POR COSTO")
+    println("0.- 🚪 SALIR")
+
+    print("👉 Elige una opción: ")
+}
+
+fun buscarServicioPorNombre() {
+    if (servicios.isEmpty()) {
+        println("No hay servicios registrados")
+        return
+    }
+
+    print("Dame el nombre del servicio: ")
+    val nombreBuscar = readln()
+
+    var encontrado = false
+
+    for (i in servicios.indices) {
+        if (servicios[i].nombreServicio.lowercase() == nombreBuscar.lowercase()) {
+            println()
+            println("Servicio encontrado ✅")
+
+            mostrarDatosServicio(i)
+            encontrado = true
+
+            break
+        }
+    }
+
+    if (!encontrado) {
+        println("Servicio no encontrado ❌")
+    }
+}
+
+fun filtrarServiciosDisponibles() {
+    if (servicios.isEmpty()) {
+        println("No hay servicios registrados")
+        return
+    }
+
+    println()
+    println("Servicios disponibles ✅")
+
+    println(
+        "%-25s %-12s %-15s %-20s".format(
+            "SERVICIO",
+            "COSTO",
+            "DISPONIBLE",
+            "HORARIO"
+        )
+    )
+
+    for (servicio in servicios) {
+        if (servicio.disponible.lowercase() == "si") {
+            println(
+                "%-25s %-12.2f %-15s %-20s".format(
+                    servicio.nombreServicio,
+                    servicio.costo,
+                    servicio.disponible,
+                    servicio.horario
+                )
+            )
+        }
+    }
+}
+
+fun ordenarServiciosPorCosto() {
+    if (servicios.isEmpty()) {
+        println("No hay servicios registrados")
+        return
+    }
+
+    val serviciosOrdenados = servicios.sortedBy { it.costo }
+
+    println()
+    println("Servicios ordenados por costo 💰")
+
+    println(
+        "%-25s %-12s %-15s %-20s".format(
+            "SERVICIO",
+            "COSTO",
+            "DISPONIBLE",
+            "HORARIO"
+        )
+    )
+
+    for (servicio in serviciosOrdenados) {
+        println(
+            "%-25s %-12.2f %-15s %-20s".format(
+                servicio.nombreServicio,
+                servicio.costo,
+                servicio.disponible,
+                servicio.horario
+            )
+        )
+    }
+}
+
 fun escribirServicioEnArchivo() {
     val archivo = File(nombreArchivoServicio)
-    val texto = "${servicio.nombreServicio}|" +
-            "${servicio.costo}|" +
-            "${servicio.disponible}|" +
-            "${servicio.horario}"
-    archivo.writeText(texto)
-    println("El archivo $nombreArchivoServicio se ha escrito")
+    archivo.writeText("") // Limpiar el archivo
+    for (servicio in servicios) {
+        val texto = "${servicio.nombreServicio}|" +
+                "${servicio.costo}|" +
+                "${servicio.disponible}|" +
+                "${servicio.horario}\n"
+        archivo.appendText(texto)
+    }
+    println("El archivo $nombreArchivoServicio se ha guardado")
+}
+
+fun leerServiciosDesdeArchivo() {
+    val archivo = File(nombreArchivoServicio)
+
+    val lineas = archivo.readLines()
+    for (linea in lineas) {
+        val campos = linea.split("|")
+
+        val nombrex = campos[0]
+        val costox = campos[1].toDouble()
+        val disponiblex = campos[2]
+        val horariox = campos[3]
+        insertarServicio(nombrex, costox, disponiblex, horariox)
+    }
 }
 
 fun main() {
-    pedirDatosServicio()
-    println("-".repeat(100))
-    mostrarDatosServicio()
-    escribirServicioEnArchivo()
+
+    crearArchivoServicioSiNoExiste()
+    leerServiciosDesdeArchivo()
+    mostrarTodosLosServicios()
+
+    var opcion: Int
+    do {
+
+        menuServicios()
+        opcion = readln().toInt()
+
+        when (opcion) {
+
+            1 -> {
+                pedirDatosServicio()
+                escribirServicioEnArchivo()
+            }
+
+            2 -> mostrarTodosLosServicios()
+
+            3 -> buscarServicioPorNombre()
+
+            4 -> filtrarServiciosDisponibles()
+
+            5 -> ordenarServiciosPorCosto()
+
+            0 -> println("Saliendo...")
+
+            else -> println("Opción no válida")
+        }
+
+    } while (opcion != 0)
 }

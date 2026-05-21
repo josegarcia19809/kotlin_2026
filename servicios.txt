@@ -1,1 +1,20 @@
-Spa|500.0|si|9:00 AM - 6:00 PM
+Spa|800.0|si|9:00 AM - 6:00 PM
+Restaurante Buffet|350.0|si|7:00 AM - 10:00 PM
+Lavandería|150.0|no|8:00 AM - 5:00 PM
+Gimnasio|0.0|si|6:00 AM - 11:00 PM
+Masajes Relajantes|1200.0|si|10:00 AM - 8:00 PM
+Servicio a la Habitación|250.0|si|24 horas
+Bar del Hotel|500.0|si|5:00 PM - 1:00 AM
+Alberca|0.0|si|8:00 AM - 9:00 PM
+Transporte al Aeropuerto|900.0|no|Disponible bajo reserva
+Tour Turístico|1800.0|si|9:00 AM - 4:00 PM
+Cafetería|120.0|si|6:30 AM - 9:00 PM
+Sala de Juegos|80.0|si|10:00 AM - 10:00 PM
+Internet Premium|200.0|si|24 horas
+Estacionamiento|100.0|si|24 horas
+Renta de Bicicletas|300.0|no|8:00 AM - 6:00 PM
+Jacuzzi|400.0|si|9:00 AM - 8:00 PM
+Desayuno Continental|220.0|si|7:00 AM - 11:00 AM
+Servicio de Niñera|600.0|si|Disponible bajo solicitud
+Salón de Eventos|5000.0|no|Reservación previa
+Cambio de Divisas|50.0|si|9:00 AM - 5:00 PM

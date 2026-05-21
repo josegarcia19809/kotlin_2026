@@ -1,19 +1,17 @@
 package org.example.p07_hotel_lucho
 
+// Separar_palabras
 fun main() {
-    val linea = "Homero|300|400|trabajo"
-    val valores = linea.split("|")
+    val linea = "Carolina|300|400|trabajo"
+    val campos = linea.split("|")
 
-    val nombre = valores[0]
-    val ingresos = valores[1].toDouble()
-    val egresos = valores[2].toDouble()
-    val origen = valores[3]
+    val nombre = campos[0]
+    val ingresos = campos[1].toDouble()
+    val egresos = campos[2].toDouble()
+    val fuente = campos[3]
 
     val saldoFinal = ingresos - egresos
-
-    println(nombre)
-    println(ingresos)
-    println(egresos)
-    println(origen)
-    println(saldoFinal)
+    println("Nombre: $nombre")
+    println("Saldo final: $saldoFinal")
+    println("Fuente de los ingresos: $fuente")
 }

@@ -7,15 +7,15 @@ package org.example.p05_funciones
 // promedio: desplegarPromedio()
 
 fun mostrarNombre() {
-    println("Mi nombre es Diana Yaneth Ramirez Flores")
+    println("Mi nombre es ")
 }
 
 fun visualizarCarrera() {
-    println("carrera: Ingenieria Informatica")
+    println("carrera: ")
 }
 
 fun desplegarPromedio() {
-    println("Promedio: 100")
+    println("Promedio: ")
 }
 
 fun main() {

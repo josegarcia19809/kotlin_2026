@@ -1,6 +1,7 @@
 package org.example.p01_fundamentos
 
 fun main() {
+    println("Programa por: José Luis García M")
     println("🛒Total de compra en una tienda")
 
     print("¿Cuántos productos vas a comprar? ")

@@ -1,3 +1,0 @@
-Saludos desde México 🇲🇽
-
-Características funcionales de Kotlin con expresiones lambda

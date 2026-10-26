@@ -1,4 +1,4 @@
-package org.example.p07_hotel_lucho
+package p07_hotel_lucho
 
 import java.io.File
 
@@ -10,7 +10,6 @@ data class Huesped(
 )
 
 val huespedes = mutableListOf<Huesped>()
-
 val nombreArchivoHuesped = "huespedes.txt"
 
 fun insertarDatosHuesped(
@@ -19,37 +18,35 @@ fun insertarDatosHuesped(
     diasx: Int,
     nacionalidadx: String
 ) {
-
     val nuevoHuesped = Huesped(
         nombrex,
         telefonox,
         diasx,
         nacionalidadx
     )
-
     huespedes.add(nuevoHuesped)
 }
 
 fun pedirDatosHuesped() {
-    println("Datos del huésped")
+    println("Datos del huésped 👩🏻‍🦱👩🏼🧔🏻‍♂️")
 
-    print("Dame nombre: ")
+    print("📝Dame nombre: ")
     val nombrex = readln()
 
-    print("Dame teléfono: ")
+    print("📞Dame teléfono: ")
     val telefonox = readln()
 
-    print("Dame días de estancia: ")
+    print("🗓️Dame días de estancia: ")
     val diasx = readln().toInt()
 
-    print("Dame nacionalidad: ")
+    print("🇲🇽🇺🇸Dame nacionalidad: ")
     val nacionalidadx = readln()
 
     insertarDatosHuesped(nombrex, telefonox, diasx, nacionalidadx)
 }
 
 fun mostrarDatosHuesped(indice: Int) {
-    println("Datos del huésped")
+    println("Datos del huésped 🧔🏻‍♂️👩🏼👩🏻‍🦱")
 
     println("Nombre: ${huespedes[indice].nombre}")
     println("Teléfono: ${huespedes[indice].telefono}")
@@ -58,7 +55,7 @@ fun mostrarDatosHuesped(indice: Int) {
 }
 
 fun mostrarDatosHuespedes() {
-    println("Lista de huéspedes")
+    println("Lista de huéspedes 🧔🏻‍♂️👩🏼👩🏻‍🦱")
 
     if (huespedes.isEmpty()) {
         println("No hay huéspedes registrados")
@@ -66,13 +63,9 @@ fun mostrarDatosHuespedes() {
     }
 
     println()
-
     println(
         "%-25s %-18s %-10s %-15s".format(
-            "NOMBRE",
-            "TELÉFONO",
-            "DÍAS",
-            "NACIONALIDAD"
+            "NOMBRE", "TELEFONO", "DIAS", "NACIONALIDAD"
         )
     )
 
@@ -86,7 +79,23 @@ fun mostrarDatosHuespedes() {
             )
         )
     }
+
 }
+
+fun menuHuespedes() {
+    println()
+    println("🏨------------------------------------------------🏨")
+    println("         SISTEMA DE HUÉSPEDES")
+    println("1.- ➕ ALTA DE HUÉSPED")
+    println("2.- 📋 REPORTE GENERAL")
+    println("3.- 🔍 BUSCAR HUÉSPED POR NOMBRE")
+    println("4.- 🌎 FILTRAR POR NACIONALIDAD")
+    println("5.- 📅 ORDENAR POR DÍAS")
+    println("0.- 🚪 SALIR")
+
+    print("👉 Elige una opción: ")
+}
+
 
 fun escribirHuespedEnArchivo() {
     val archivo = File(nombreArchivoHuesped)
@@ -98,21 +107,17 @@ fun escribirHuespedEnArchivo() {
                     "${huesped.telefono}|" +
                     "${huesped.dias}|" +
                     "${huesped.nacionalidad}\n"
-
         archivo.appendText(texto)
     }
-
     println("Archivo escrito correctamente")
 }
 
 fun leerDatosDesdeArchivoHuesped() {
-
     val archivo = File(nombreArchivoHuesped)
 
     val lineas = archivo.readLines()
 
     for (linea in lineas) {
-
         val campos = linea.split("|")
 
         val nombrex = campos[0]
@@ -129,25 +134,10 @@ fun crearArchivoHuespedSiNoExiste() {
 
     if (!archivo.exists()) {
         archivo.createNewFile()
-        println("Archivo creado")
+        println("Creando archivo...")
     } else {
         println("El archivo ya existe")
     }
-}
-
-fun menuHuespedes() {
-
-    println()
-    println("-".repeat(100))
-    println("         SISTEMA DE HUÉSPEDES")
-    println("1.- ➕ ALTA DE HUÉSPED")
-    println("2.- 📋 REPORTE GENERAL")
-    println("3.- 🔍 BUSCAR HUÉSPED POR NOMBRE")
-    println("4.- 🌎 FILTRAR POR NACIONALIDAD")
-    println("5.- 📅 ORDENAR POR DÍAS")
-    println("0.- 🚪 SALIR")
-
-    print("👉 Elige una opción: ")
 }
 
 fun buscarHuespedPorNombre() {
@@ -251,6 +241,7 @@ fun ordenarPorDias() {
     }
 }
 
+
 fun main() {
     crearArchivoHuespedSiNoExiste()
     leerDatosDesdeArchivoHuesped()
@@ -262,25 +253,28 @@ fun main() {
         opcion = readln().toInt()
 
         when (opcion) {
-
             1 -> {
                 pedirDatosHuesped()
-
                 escribirHuespedEnArchivo()
             }
 
-            2 -> mostrarDatosHuespedes()
-
+            2 -> {
+                mostrarDatosHuespedes()
+            }
             3 -> buscarHuespedPorNombre()
 
             4 -> filtrarPorNacionalidad()
 
             5 -> ordenarPorDias()
 
-            0 -> println("Saliendo...")
+            0 -> {
+                println("Saliendo...")
+            }
 
-            else -> println("Opción no válida")
+            else -> {
+                println("Opción no válida")
+            }
         }
-
     } while (opcion != 0)
+
 }

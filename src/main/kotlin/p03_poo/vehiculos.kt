@@ -41,21 +41,22 @@ class Camioneta(
     override fun toString(): String {
         return """
             ${super.toString()}
-            Tipo de tracción: $tipoTraccion
+        Tipo de tracción: $tipoTraccion
         """.trimIndent()
     }
 }
 
+
 fun pruebaAutomovil() {
     println("-".repeat(100))
-    val automovilUsado = Automovil("Audi", "2007", 12500, 21500.0, 4)
+    val automovilUsado = Automovil("Audi", "2007", 12500, 21500.00, 4)
     println("🚗 Datos del automóvil usado: ")
     println(automovilUsado)
 }
 
 fun pruebaCamioneta() {
     println("-".repeat(100))
-    val camionetaUsada = Camioneta("Toyota", "2002", 40000, 12000.0, "4WD")
+    val camionetaUsada = Camioneta("Toyota", "2002", 40000, 12000.00, "4WD")
     println("🛻 Datos de la camioneta usada: ")
     println(camionetaUsada)
 }

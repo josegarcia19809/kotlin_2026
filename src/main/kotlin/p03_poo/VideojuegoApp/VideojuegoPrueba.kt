@@ -1,19 +1,20 @@
 package p03_poo.VideojuegoApp
 
 fun main() {
-    val juego1 = Videojuego("The legend of Zelda", "Aventura", "Nintendo Switch", 2017)
-    val juego2 = Videojuego("God of War", "Acción", "PlayStation 4", 2018)
-    val juego3 = Videojuego("Halo Infinite", "Shooter", "Xbox Series X", 2021)
+    println("👱🏼 Plataforma de videojuegos 🎮")
+    val v1 = Videojuego("The legend of Zelda", "Aventura", "Nintendo switch", 2017)
+    val v2 = Videojuego("God of War", "Acción", "PlayStation 4", 2018)
+    val v3 = Videojuego("Halo Infinite", "Shooter", "XBox Series X", 2021)
 
-    // Crear lista de videojuegos
+    // Crear una lista de videojuegos
     val listaVideojuegos = ArrayList<Videojuego>()
-    listaVideojuegos.add(juego1)
-    listaVideojuegos.add(juego2)
-    listaVideojuegos.add(juego3)
 
-    println("-".repeat(100))
+    // Agregamos los 3 videojuegos a la lista
+    listaVideojuegos.add(v1)
+    listaVideojuegos.add(v2)
+    listaVideojuegos.add(v3)
 
-    println("**************Mi colección de videojuegos 🎮")
+    // Recorrer la lista para imprimir los juegos
     for (juego in listaVideojuegos) {
         println(juego.mostrarDatos())
     }

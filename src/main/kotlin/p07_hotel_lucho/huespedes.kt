@@ -1,5 +1,6 @@
 package p07_hotel_lucho
 
+
 import java.io.File
 
 data class Huesped(
@@ -9,7 +10,7 @@ data class Huesped(
     var nacionalidad: String
 )
 
-val huespedes = mutableListOf<Huesped>()
+val huespedes = ArrayList<Huesped>()
 val nombreArchivoHuesped = "huespedes.txt"
 
 fun insertarDatosHuesped(
@@ -18,12 +19,7 @@ fun insertarDatosHuesped(
     diasx: Int,
     nacionalidadx: String
 ) {
-    val nuevoHuesped = Huesped(
-        nombrex,
-        telefonox,
-        diasx,
-        nacionalidadx
-    )
+    val nuevoHuesped = Huesped(nombrex, telefonox, diasx, nacionalidadx)
     huespedes.add(nuevoHuesped)
 }
 
@@ -261,6 +257,7 @@ fun main() {
             2 -> {
                 mostrarDatosHuespedes()
             }
+
             3 -> buscarHuespedPorNombre()
 
             4 -> filtrarPorNacionalidad()
@@ -278,3 +275,8 @@ fun main() {
     } while (opcion != 0)
 
 }
+
+
+
+
+
